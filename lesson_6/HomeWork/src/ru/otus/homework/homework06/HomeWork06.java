@@ -34,6 +34,7 @@ public class HomeWork06 {
             int checkAnswer = 0;
 
             while (checkAnswer == 0) {
+                System.out.print("Ваш ответ: ");
                 String possibleAnswer = scanner.nextLine();
                 int posibleAnswerToInt = 0;
 
@@ -53,15 +54,17 @@ public class HomeWork06 {
                         checkAnswer++;
                         if (posibleAnswerToInt == rightAnswers[i]) {
                             correctCount++;
+                            System.out.println("Правильно!");
                         } else {
                             incorrectCount++;
+                            System.out.println("Неправильно...");
                         }
 
                     }
                 }
 
             }
-
+            System.out.println();
         }
 
         System.out.println("Результат: правильно " + correctCount + ", неправильно " + incorrectCount);
