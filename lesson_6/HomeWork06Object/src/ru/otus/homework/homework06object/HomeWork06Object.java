@@ -1,8 +1,8 @@
-package ru.otus.homework.homework063object;
+package ru.otus.homework.homework06object;
 
 import java.util.Scanner;
 
-public class HomeWork063DObject {
+public class HomeWork06Object {
     public static void main(String[] args) {
 
         int correctCount = 0;
