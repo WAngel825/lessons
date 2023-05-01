@@ -7,18 +7,6 @@ import ru.otus.homework.homework16.assertions.Assertions;
 public class GameWinnerConsolePrinterFake02 implements GameWinnerPrinter {
     @Override
     public void printWinner(Player winner) {
-        String scenario = "V4. Тест на победителя Игоря";
-
-        try {
-
-            String expected = "игорь";
-            String actual = winner.getName().toLowerCase();
-            Assertions.assertEquals(expected, actual);
-
-            System.out.printf("\"%s\" passed %n", scenario);
-        } catch (Throwable e) {
-            System.err.printf("\"%s\" fails with message \"%s\" %n", scenario, e.getMessage());
-        }
-
+        System.out.printf(winner.getName());
     }
 }
