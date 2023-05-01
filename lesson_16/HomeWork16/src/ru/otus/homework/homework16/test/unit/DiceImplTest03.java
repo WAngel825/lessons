@@ -35,6 +35,15 @@ public class DiceImplTest03 {
             System.err.printf("\"%s\" fails with message \"%s\" %n", scenario, e.getMessage());
         }
 
+        Player expectedWinner = null;
+        Player actualWinner = ((GameWinnerConsolePrinterFake01) winnerPrinter).getMainPlayer();
+
+        if (expectedWinner == actualWinner) {
+            System.out.printf("\"%s\" passed %n", scenario);
+        } else {
+            System.err.printf("\"%s\" fails with message \"%s\" %n", scenario, "Одижание не совпало с реальностью");
+        }
+
     }
 }
 

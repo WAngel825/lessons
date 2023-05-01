@@ -19,20 +19,30 @@ public class DiceImplTest04 {
         Dice dice = new DiceImplFake02();
         GameWinnerPrinter winnerPrinter = new GameWinnerConsolePrinterFake02();
         Game game = new Game(dice, winnerPrinter);
-        game.playGame(new Player("Вася"), new Player("Игорь"));
+
+        Player expectedWinner = new Player("Игорь");
+        game.playGame(new Player("Вася"), expectedWinner);
 
         String actual = outputStream.toString();
 
         System.setOut(consoleStream);
 
         try {
-
             String expected = "Игорь";
             Assertions.assertEquals(expected, actual);
 
             System.out.printf("\"%s\" passed %n", scenario);
         } catch (Throwable e) {
             System.err.printf("\"%s\" fails with message \"%s\" %n", scenario, e.getMessage());
+        }
+
+
+        Player actualWinner = ((GameWinnerConsolePrinterFake02) winnerPrinter).getMainPlayer();
+
+        if (expectedWinner.equals(actualWinner)) {
+            System.out.printf("\"%s\" passed %n", scenario);
+        } else {
+            System.err.printf("\"%s\" fails with message \"%s\" %n", scenario, "Одижание не совпало с реальностью");
         }
 
 
