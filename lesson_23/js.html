@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Добавление информации</title>
+    <style>
+        h1, h2 {
+            color: black;
+        }
+
+		.brd {
+           border: 1px solid steelblue;
+           padding: 10px;
+		   width: 800px;
+        }
+		
+		.brd_in {
+           border: 1px solid steelblue;
+           padding: 4px;
+		   width: 400px;
+        }
+		
+		.students-tab {
+            border: 1px solid steelblue;
+            width: 800px;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+        }
+		
+		.students-tab tr td {
+            border: 1px solid steelblue;
+        }
+    </style>
+
+    <script>
+        "use strict"
+		let cntStudents = 0;
+		let ageStudents = 0;
+		
+       
+        function addStudent() {
+			const studentsTabBody = document.getElementById("studentsTabBody");
+            const studentName = document.getElementById("studentName").value;
+			const studentBirth = new Date(document.getElementById("studentBirth").value);
+			const studentSex = document.getElementById("studentSex").value;
+            const studentAge = Math.floor(((new Date()).getTime() - studentBirth.getTime()) / 1000 / 60 / 60 / 24 / 365);
+			
+			let tr = document.createElement("tr");
+            
+			tr.innerHTML = '<td>'+studentName+' </td> <td> '+studentSex+'</td> <td> '+studentBirth.toISOString().slice(0,10)+' </td> <td> '+studentAge+'</td>';
+            studentsTabBody.appendChild(tr);
+			
+            cntStudents = cntStudents + 1;
+			ageStudents = ageStudents + studentAge;
+			let avg = (ageStudents / cntStudents).toFixed(1);
+			
+			const average = document.getElementById("average");
+			average.innerHTML = avg;
+			
+        }
+    
+    </script>
+</head>
+
+<body>
+    <h1>Форма добавления информации о студенте</h1>
+	
+    <div class="brd">
+	
+	    <table>
+            <tbody>
+	            <tr>
+                    <td width ="200px"><label for = "fioTextBox" >Имя студента:</label></td>
+			        <td><input id = "studentName" name = "fio" type = "text" maxlength = "200" class = "brd_in"></td>
+                </tr>
+                <tr>
+		            <td width ="200px"><label for = "biDate">Дата рождения:</label></td>
+		            <td><input id = "studentBirth" name = "birthDate" type = "date" value = "2005-05-04" class = "brd_in"></td>
+		        </tr>
+                <tr>
+				    <td width ="200px"><label>Пол:</label></td>
+					<td>
+					    <select id = "studentSex" name = "sex" class = "brd_in">
+                            <option value = "Женщина" selected>Женщина</option>
+                            <option value = "Мужчина">Мужчина</option>
+                        </select>
+					</td>
+				</tr>
+            </tbody>
+        </table>
+
+        <br>
+        <button onclick = "addStudent()">Добавить</button>
+
+    </div>
+   
+    <h1>Таблица студентов</h1>
+
+	<table id="studentsTab" class="students-tab">
+        <thead>
+	        <tr>
+                <td width ="400px">Имя студента</td>
+			    <td width ="200px">Пол</td>
+			    <td width ="300px">Дата рождения</td>
+			    <td width ="200px">Возраст</td>
+            </tr>
+        </thead>
+        <tbody id="studentsTabBody">
+	   
+        </tbody>
+	    <tfoot>
+	        <tr><td colspan="4" height="20px"> </td></tr>
+	        <tr><td colspan="3">Средний возраст студентов</td>
+	        <td id = "average"></td></tr>
+	    </tfoot>
+    </table>
+</body>
+</html>
