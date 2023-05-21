@@ -11,7 +11,19 @@ public class Main {
     System.out.println(INTRODUCTION);
     String possibleMoneyStr = scanner.nextLine();
 
-    String errors = CheckMoney.CheckMoney(possibleMoneyStr);
+    String errors;
+
+    Validator validator = new IntValidator();
+    errors = validator.check(possibleMoneyStr);
+
+    if (Objects.equals(errors, "")) {
+      validator = new MaxValueValidator();
+      errors = validator.check(possibleMoneyStr);
+
+      validator = new MinValueValidator();
+      errors = errors + " " + validator.check(possibleMoneyStr);
+    }
+
 
     if (!Objects.equals(errors, "")) {
       System.out.println(errors);
