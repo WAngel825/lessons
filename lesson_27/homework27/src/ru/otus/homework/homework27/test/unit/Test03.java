@@ -4,7 +4,7 @@ import ru.otus.homework.homework27.app.CheckMoney;
 import ru.otus.homework.homework27.assertions.Assertions;
 
 public class Test03 {
-    public void testN03() {
+    public void test() {
         String scenario = "V3. Тест Проверки на ввод символов ";
 
         try {

@@ -2,7 +2,8 @@ package ru.otus.homework.homework27.app;
 
 public class MoneyInWords {
     private final CurrencyDeclination currencyDeclination;
-    private static final String[] units = {"один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
+    private static final String[][] units = {{"один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"},
+                                             {"одна", "две"}};
     private static final String[] dozens = {"двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
     private static final String[] hundreds = {"сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
     private static final String[] tenths  = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать",
@@ -54,7 +55,7 @@ public class MoneyInWords {
         }
 
         if ((unit > 0) && (dozen != 1)) {
-            words = words + " " + units[unit - 1];
+            words = words + " " + units[(unit == 1 || unit == 2) ? level : 0][unit - 1];
         }
 
         words = words + " " + getRank(digit, level);
@@ -83,9 +84,9 @@ public class MoneyInWords {
             i++;
         } while (i <= digitLevel);
 
-        result = result.trim() + " " + currencyDeclination.getCurrencyDeclination(money % 10);
+        result = result.trim() + " " + currencyDeclination.getCurrencyDeclination(money);
 
-        return result;
+        return result.trim();
     }
 
 }

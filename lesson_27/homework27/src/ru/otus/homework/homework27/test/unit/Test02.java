@@ -5,7 +5,7 @@ import ru.otus.homework.homework27.assertions.Assertions;
 
 public class Test02 {
 
-    public void testN02() {
+    public void test() {
         String scenario = "V2. Тест Проверки ограничения на ввод числа большего 999 999 ";
 
         try {
